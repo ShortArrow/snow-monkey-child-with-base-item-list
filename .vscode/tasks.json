@@ -1,0 +1,49 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "zip",
+            "type": "shell",
+            "command": "7z",
+            "args": [
+                "a",
+                "./snow-monkey-child-with-base.zip",
+                "*.php",
+                "*.css",
+                "LICENSE",
+            ],
+        },
+        {
+            "label": "delete",
+            "type": "shell",
+            "command": "rm",
+            "args": [
+                "./snow-monkey-child-with-base.zip",
+            ]
+        },
+        {
+            "label": "Task Sequence",
+            "type": "shell",
+            "command": "Write-Host",
+            "args": [
+                "Finish!",
+                "-BackgroundColor",
+                "DarkGreen",
+                "-ForegroundColor",
+                "Black"
+            ],
+            "dependsOrder": "sequence",
+            "dependsOn": [
+                "delete",
+                "zip"
+            ],
+            "problemMatcher": [],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        }
+    ]
+} 
